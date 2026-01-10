@@ -39,6 +39,7 @@ export function TaskForm({ task, onClose, onSubmit }: TaskFormProps) {
       const taskData = {
         title: title.trim(),
         description: description.trim(),
+        completed: false, // Default to false when creating a new task
         dueDate: dueDate ? new Date(dueDate).toISOString() : undefined,
       };
 
