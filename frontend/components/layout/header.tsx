@@ -31,15 +31,15 @@ export function Header() {
             className="relative text-gray-300 hover:bg-gray-700"
             aria-label="Notifications"
           >
-            <Bell className="h-5 w-5" />
-            <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500"></span>
+            {/* <Bell className="h-5 w-5" />
+            <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-red-500"></span> */}
           </Button>
 
           <div className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-full bg-primary-500 flex items-center justify-center text-white font-medium">
               {user?.name?.charAt(0).toUpperCase() || user?.email?.charAt(0).toUpperCase() || 'U'}
             </div>
-            <span className="hidden md:block text-sm font-medium text-gray-300">
+            <span className="hidden md:block text-sm font-medium text-gray-300 uppercase">
               {user?.name || user?.email}
             </span>
           </div>

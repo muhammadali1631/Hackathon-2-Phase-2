@@ -40,7 +40,7 @@ export function Sidebar() {
         <div className="p-4">
           <div className="mb-6">
             <p className="text-sm text-gray-600 dark:text-gray-400">Welcome back,</p>
-            <p className="font-medium text-gray-800 dark:text-white truncate">{user?.name || user?.email}</p>
+            <p className="font-medium text-gray-800 uppercase dark:text-white truncate">{user?.name || user?.email}</p>
           </div>
 
           <nav>
@@ -51,12 +51,7 @@ export function Sidebar() {
                   <span>Dashboard</span>
                 </Link>
               </li>
-              <li>
-                <Link href="/profile" className="flex items-center space-x-3 p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                  <User className="h-5 w-5" />
-                  <span>Profile</span>
-                </Link>
-              </li>
+              
             </ul>
           </nav>
 
