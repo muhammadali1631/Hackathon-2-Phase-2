@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from 'react';
 import { Button } from '../ui/button';
-import { Menu, Bell, User } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { useAuth } from '@/providers/auth-provider';
 
-export function Header() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+interface HeaderProps {
+  setSidebarOpen: (open: boolean) => void;
+}
+
+export function Header({ setSidebarOpen }: HeaderProps) {
   const { user } = useAuth();
 
   return (

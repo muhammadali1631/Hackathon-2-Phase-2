@@ -1,14 +1,17 @@
 'use client';
 
-import { useState } from 'react';
 import { Button } from '../ui/button';
-import { LogOut, Home, User, Plus } from 'lucide-react';
+import { LogOut, Home, User } from 'lucide-react';
 import Link from 'next/link';
 import { useAuth } from '@/providers/auth-provider';
 import { useRouter } from 'next/navigation';
 
-export function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
+interface SidebarProps {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+}
+
+export function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
   const { user, logout } = useAuth();
   const router = useRouter();
 
@@ -23,7 +26,7 @@ export function Sidebar() {
     <>
       {/* Mobile sidebar - hidden by default, shown when hamburger is clicked */}
       <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className="flex items-center justify-between p-5 border-b border-gray-200 dark:border-gray-700">
           <h1 className="text-xl font-bold text-gray-800 dark:text-white">Todo App</h1>
           <Button
             variant="ghost"

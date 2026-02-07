@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { AuthProvider, useAuth } from '@/providers/auth-provider';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -12,14 +12,24 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <AuthProvider>
-      <ProtectedLayout>{children}</ProtectedLayout>
+      <ProtectedLayout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+        {children}
+      </ProtectedLayout>
     </AuthProvider>
   );
 }
 
-function ProtectedLayout({ children }: { children: ReactNode }) {
+interface ProtectedLayoutProps {
+  children: ReactNode;
+  sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
+}
+
+function ProtectedLayout({ children, sidebarOpen, setSidebarOpen }: ProtectedLayoutProps) {
   const { user, loading, isAuthenticated } = useAuth();
   const router = useRouter();
 
@@ -46,9 +56,9 @@ function ProtectedLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
       <div className="flex flex-col flex-1 overflow-hidden">
-        <Header />
+        <Header setSidebarOpen={setSidebarOpen} />
         <main className="flex-1 overflow-y-auto p-6">
           {children}
         </main>
